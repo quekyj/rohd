@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:async';
 
 import 'package:rohd/rohd.dart';
@@ -7,35 +9,38 @@ class ShiftRegister extends Module {
       {super.name = 'shift_register'}) {
     clk = addInput('clk', clk);
     reset = addInput('reset', reset);
-    sin = addInput('s_in', sin);
+    sin = addInput('s_in', sin, width: sin.width);
 
-    final sout = addOutput('s_out');
+    final width = sin.width + 3;
+
+    final sout = addOutput('s_out', width: width);
 
     // A local signal
-    final width = 4;
-    var rReg = Logic(name: 'r_reg', width: width);
-    var rNext = Logic(name: 'r_next', width: width);
+    final data = Logic(name: 'data', width: width); // 0000
 
     Sequential(clk, [
       IfBlock([
         Iff(reset, [
-          rReg < 0,
+          data < 0,
         ]),
         Else([
-          rReg < rNext,
+          data < [data.slice(2, 0), sin].swizzle(),
         ]),
       ]),
     ]);
 
-    rNext <= [sin, rReg.slice(width - 1, 1)].swizzle(); // right shift
-    sout <= rReg[0];
+    sout <= data;
   }
+  Logic get sout => output('s_out');
 }
 
 void main() async {
   final reset = Logic(name: 'reset');
-  final sin = Logic(name: 's_in');
   final clk = SimpleClockGenerator(10).clk;
+
+  // value to shift in on positive clock edge triggered
+  // let say '101'
+  final sin = Logic(name: 's_in');
 
   final shiftReg = ShiftRegister(clk, reset, sin);
   await shiftReg.build();
@@ -43,13 +48,16 @@ void main() async {
   print(shiftReg.generateSynth());
 
   reset.inject(1);
-  sin.inject(bin('101'));
+  sin.inject(bin('1'));
 
   Simulator.registerAction(25, () {
     reset.put(0);
   });
-  Simulator.registerAction(35, () {
-    print(shiftReg.input('s_in').value.toString());
+
+  // listen to the shift in value
+  shiftReg.sout.changed.listen((event) {
+    print('Simulator time: ${Simulator.time}, current register '
+        'value: ${event.newValue.toInt()}');
   });
 
   // Print a message when we're done with the simulation!
@@ -66,17 +74,8 @@ void main() async {
   // Kick off the simulation.
   unawaited(Simulator.run());
 
-  sin.inject(LogicValue.x);
   await reset.nextNegedge;
-
-  final message = [1, 0, 1];
-  for (final m in message) {
-    await clk.nextNegedge;
-    sin.inject(m);
-  }
-
   await clk.nextNegedge;
-  sin.inject(LogicValue.x);
 
   await Simulator.simulationEnded;
 }

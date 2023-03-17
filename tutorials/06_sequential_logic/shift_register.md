@@ -4,7 +4,7 @@ From the previous section, you saw how a combinational logic is used in the ROHD
 
 A register is a digital circuit that use group of flip-flops to store multiple bits of binary data (1 or 0). On the other hand, shift register is used to transfer the data in or out from register. 
 
-Positive or Negative Edge of the clock signal is used to initiate the bit from moving around the register which make this a sequential logic circuit. 
+Positive or Negative Edge of the clock signal is used to initiate the bit from moving around the register which make this a sequential logic circuit.
 
 Let start creating a shift register module and a main function to call on the shift register. Don't forget to import the ROHD library as the header.
 
@@ -128,3 +128,11 @@ void main() async {
 Now, its time for us to test for the simulation. 
 
 
+
+
+Any particular reason to use this  data <= {data[2:0], shift_in};
+instead of 
+data <= {data[0], shift_in};
+Yes, there is a reason for that. When you shift data left using {data[0], shift_in}, you will lose the leftmost bit of your register, which may not be desirable in some cases.
+
+In contrast, using {data[2:0], shift_in} ensures that you always keep the leftmost 3 bits of your register, and shift in the new bit at the rightmost position. This is a common way to implement a shift register, and ensures that the register always maintains its width and keeps all previously shifted bits.
