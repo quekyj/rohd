@@ -11,7 +11,7 @@ class ShiftRegister extends Module {
     reset = addInput('reset', reset);
     sin = addInput('s_in', sin, width: sin.width);
 
-    final width = sin.width + 3;
+    const width = 4;
 
     final sout = addOutput('s_out', width: width);
 
@@ -24,7 +24,7 @@ class ShiftRegister extends Module {
           data < 0,
         ]),
         Else([
-          data < [data.slice(2, 0), sin].swizzle(),
+          data < [data.slice(2, 0), sin].swizzle(), // left shift
         ]),
       ]),
     ]);
@@ -48,7 +48,7 @@ void main() async {
   print(shiftReg.generateSynth());
 
   reset.inject(1);
-  sin.inject(bin('1'));
+  sin.inject(1);
 
   Simulator.registerAction(25, () {
     reset.put(0);
@@ -72,10 +72,5 @@ void main() async {
       outputPath: 'tutorials/06_sequential_logic/shiftReg.vcd');
 
   // Kick off the simulation.
-  unawaited(Simulator.run());
-
-  await reset.nextNegedge;
-  await clk.nextNegedge;
-
-  await Simulator.simulationEnded;
+  await Simulator.run();
 }
