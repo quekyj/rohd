@@ -1,6 +1,7 @@
 import 'package:rohd/rohd.dart';
 
 class FRTimer extends Module {
+  Logic get fr => output('fr');
   FRTimer(Logic clk, Logic reset) : super(name: 'timer_fr') {
     reset = addInput('reset', reset);
     clk = addInput('clk', clk);

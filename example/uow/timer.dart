@@ -1,6 +1,9 @@
 import 'package:rohd/rohd.dart';
 
 class Timer extends Module {
+  Logic get st => output('st');
+  Logic get mt => output('mt');
+  Logic get lt => output('lt');
   Timer(Logic start, Logic clk) : super(name: 'timer') {
     start = addInput('start', start);
     clk = addInput('clk', clk);
