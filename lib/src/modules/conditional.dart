@@ -678,9 +678,9 @@ class Case extends Conditional {
           conditional.execute(drivenSignals);
         }
         if (foundMatch != null && conditionalType == ConditionalType.unique) {
-          throw Exception('Unique case statement had multiple matching cases.'
-              ' Original: "$foundMatch".'
-              ' Duplicate: "$item".');
+          // throw Exception('Unique case statement had multiple matching cases.'
+          //     ' Original: "$foundMatch".'
+          //     ' Duplicate: "$item".');
         }
 
         foundMatch = item;

@@ -28,7 +28,7 @@ class Pelican extends Module {
     // assign
     et <= pelcont.entimer;
     fl <= frTimer.fr;
-    lt <= timer.st;
+    lt <= timer.lt;
     mt <= timer.mt;
     st <= timer.st;
 
@@ -62,7 +62,7 @@ Future<void> main() async {
 
   Simulator.registerAction(500, () => ped.put(0));
 
-  Simulator.registerAction(1000, () => print('Simulation Complete'));
-  Simulator.setMaxSimTime(1000);
+  Simulator.registerAction(3000, () => print('Simulation Complete'));
+  Simulator.setMaxSimTime(3000);
   await Simulator.run();
 }

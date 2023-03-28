@@ -75,9 +75,9 @@ class Pelcont extends Module {
         entimer < 1
       ]),
       State<TrafficState>(TrafficState.s4, events: {
-        med: TrafficState.s5,
+        ~med & ~flash: TrafficState.s4,
         ~med & flash: TrafficState.s3,
-        ~med & ~flash: TrafficState.s4
+        med: TrafficState.s5,
       }, actions: [
         // active low
         red < 1,
