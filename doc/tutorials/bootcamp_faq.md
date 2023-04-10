@@ -495,3 +495,29 @@ Our concern is that if we are the designer and we create the function test case 
 ### Answer 15
 
 ROHD has mathematical operations in the same ways that SystemVerilog does, and it maps to those SystemVerilog operators in the same way.  You can build your logic in whatever way suits you. Usually you would not define a large complex operation using a truth table (in either SystemVerilog or ROHD).  ROHD has more options than SystemVerilog for generating complex hardware, but what's available in SystemVerilog is also available in ROHD.
+
+## Question 16
+
+What is happening when `.build()` function is called?
+
+### Answer 16
+
+The way that ROHD determine the design hierarchy module is by connectivity between objects within each module in the hierarchy build. So, when you called `.build()` one of the main things that its does is searches throughout the entire design and build the hierarchy. So, until you called build, it does not have any context which module are inside of the other module.
+
+So, if we put one module inside of another module. The way it determine its inside of the another module is by tracing the signal connectivity through input and output port.
+
+## Question 17
+
+What if one of my module is independent from each other? Mean I have one module which is separate from another module, do I have to call build?
+
+### Answer 17
+
+Yes, you need to call `.build()` seperate if your module are not connecting with each other.
+
+## Question 18
+
+What if we want to generate one module one RTL? Does ROHD support that?
+
+### Answer 18
+
+Yes, ROHD does support that by enabling an API called `.SyncBuilder()`.
