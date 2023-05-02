@@ -242,10 +242,13 @@ a_times_b &lt;=  a * b;   // multiplication
 a_div_b   &lt;=  a / b;   // division
 a_mod_b   &lt;=  a % b;   // modulo
 a_eq_b    &lt;=  a.eq(b)  // equality              NOTE: == is for Object equality of Logic's
+a_neq_b   &lt;=  a.neq(b) // inequality            NOTE: != is for Object inequality of Logic's
 a_lt_b    &lt;=  a.lt(b)  // less than             NOTE: &lt;  is for conditional assignment
 a_lte_b   &lt;=  a.lte(b) // less than or equal    NOTE: &lt;= is for assignment
 a_gt_b    &lt;=  (a &gt; b)  // greater than          NOTE: careful with order of operations, &gt; needs parentheses in this case
+                       // Note: a_gt_b &lt;= a.gt(b) is also supported for greater than.
 a_gte_b   &lt;=  (a &gt;= b) // greater than or equal NOTE: careful with order of operations, &gt;= needs parentheses in this case
+                       // Note: a_gte_b &lt;= a.gte(b) is also supported for greater than or equal.
 answer    &lt;=  mux(selectA, a, b) // answer = selectA ? a : b
 </code></pre>
 <h3 id="shift-operations">Shift Operations</h3>
@@ -381,10 +384,10 @@ class MyModule extends Module {
   ])])
 ]);
 </code></pre>
-<h4 id="ifblock"><code>IfBlock</code></h4>
-<p>The <a href="https://intel.github.io/rohd/rohd/IfBlock-class.html"><code>IfBlock</code></a> makes syntax for long chains of if / else if / else chains nicer.  For example:</p>
+<h4 id="ifblock"><code>If.block</code></h4>
+<p>The <code>If.block</code> constructor makes syntax for long chains of if / else if / else chains nicer.  For example:</p>
 <pre class="language-dart"><code class="language-dart">Sequential(clk, [
-  IfBlock([
+  If.block([
     // the first one must be Iff (yes, with 2 f's, to differentiate from If above)
     Iff(a &amp; ~b, [
       c &lt; 1,

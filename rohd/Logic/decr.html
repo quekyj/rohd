@@ -58,7 +58,10 @@
       
 
 <span class="returntype"><a href="../../rohd/ConditionalAssign-class.html">ConditionalAssign</a></span>
-<span class="name ">decr</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="decr-param-decrVal">[<span class="type-annotation">dynamic</span> <span class="parameter-name">decrVal</span>]</span></li>
+<span class="name ">decr</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="decr-param-s">{<span class="type-annotation"><a href="../../rohd/Logic-class.html">Logic</a></span> <span class="parameter-name">s</span>(<ol class="parameter-list"><li><span class="parameter" id="param-"><span class="type-annotation"><a href="../../rohd/Logic-class.html">Logic</a></span></span></li>
+</ol>
+) = <span class="default-value">_nopS</span>, </span></li>
+<li><span class="parameter" id="decr-param-val"><span class="type-annotation">dynamic</span> <span class="parameter-name">val</span> = <span class="default-value">1</span>}</span></li>
 </ol>)
 
       
@@ -66,15 +69,20 @@
     </section>
     
 <section class="desc markdown">
-  <p>Shorthand for a <a href="../../rohd/Conditional-class.html">Conditional</a> which decrements this by <code>decrVal</code></p>
-<p>By default for a <a href="../../rohd/Logic-class.html">Logic</a> variable, if no <code>decrVal</code> is provided
-result is --variable else result is var-=<code>decrVal</code></p>
+  <p>Shorthand for a <a href="../../rohd/Conditional-class.html">Conditional</a> which decrements this by <code>val</code>.</p>
+<p>By default for a <a href="../../rohd/Logic-class.html">Logic</a> variable, if no <code>val</code> is provided then the
+result is --variable else result is var-=<code>val</code>.</p>
+<p>If using <a href="../../rohd/Combinational-class.html">Combinational</a>, you will need to provide <code>s</code> as a remapping
+function since otherwise this will cause a "write after read" violation.</p>
 <pre class="language-dart"><code class="language-dart">
-// Given a and b Logic input and pdOut as output
-Combinational([
-  pdOut &lt; a,
-  pdOut.decr(b),
+Sequential(clk, [
+  pOut.decr(val: b),
 ]);
+
+Combinational.ssa((s) =&gt; [
+      s(pOut) &lt; a,
+      pOut.decr(val: b, s: s),
+    ]);
 
 </code></pre>
 </section>
@@ -83,7 +91,8 @@ Combinational([
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">ConditionalAssign decr([dynamic decrVal]) =&gt; this &lt; this - (decrVal ?? 1);</code></pre>
+  <pre class="language-dart"><code class="language-dart">ConditionalAssign decr({Logic Function(Logic) s = _nopS, dynamic val = 1}) =&gt;
+    s(this) &lt; s(this) - val;</code></pre>
 </section>
 
 
@@ -144,6 +153,8 @@ Combinational([
           <li><a href="../../rohd/Logic/eq.html">eq</a></li>
           <li><a href="../../rohd/Logic/getRange.html">getRange</a></li>
           <li><a href="../../rohd/Logic/gets.html">gets</a></li>
+          <li><a href="../../rohd/Logic/gt.html">gt</a></li>
+          <li><a href="../../rohd/Logic/gte.html">gte</a></li>
           <li><a class="deprecated" href="../../rohd/Logic/hasValidValue.html">hasValidValue</a></li>
           <li><a href="../../rohd/Logic/incr.html">incr</a></li>
           <li><a href="../../rohd/Logic/inject.html">inject</a></li>
@@ -153,6 +164,7 @@ Combinational([
           <li><a href="../../rohd/Logic/lte.html">lte</a></li>
           <li><a href="../../rohd/Logic/makeUnassignable.html">makeUnassignable</a></li>
           <li><a href="../../rohd/Logic/mulAssign.html">mulAssign</a></li>
+          <li><a href="../../rohd/Logic/neq.html">neq</a></li>
           <li class="inherited"><a href="https://api.dart.dev/stable/2.19.6/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
           <li><a href="../../rohd/Logic/or.html">or</a></li>
           <li><a href="../../rohd/Logic/put.html">put</a></li>

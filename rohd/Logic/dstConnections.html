@@ -54,29 +54,23 @@
     <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
 </h1></div>
 
+        <section class="multi-line-signature">
+          
+          <a href="https://api.dart.dev/stable/2.19.6/dart-core/Iterable-class.html">Iterable</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../../rohd/Logic-class.html">Logic</a></span>&gt;</span>
+          <span class="name ">dstConnections</span>
+          <div class="features"><span class="feature">late</span><span class="feature">final</span></div>
 
+        </section>
         
-<section id="getter">
-
-<section class="multi-line-signature">
-  
-  <span class="returntype"><a href="https://api.dart.dev/stable/2.19.6/dart-core/Iterable-class.html">Iterable</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../../rohd/Logic-class.html">Logic</a></span>&gt;</span></span>
-  <span class="name ">dstConnections</span>
-  
-
-</section>
-
-
 <section class="desc markdown">
   <p>An <a href="https://api.dart.dev/stable/2.19.6/dart-core/Iterable-class.html">Iterable</a> of all <code>Logic</code>s that are being directly driven by <code>this</code>.</p>
 </section>
 
-
+        
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">Iterable&lt;Logic&gt; get dstConnections =&gt; UnmodifiableListView(_dstConnections);</code></pre>
-</section>
-
+  <pre class="language-dart"><code class="language-dart">late final Iterable&lt;Logic&gt; dstConnections =
+    UnmodifiableListView(_dstConnections);</code></pre>
 </section>
 
 
@@ -137,6 +131,8 @@
           <li><a href="../../rohd/Logic/eq.html">eq</a></li>
           <li><a href="../../rohd/Logic/getRange.html">getRange</a></li>
           <li><a href="../../rohd/Logic/gets.html">gets</a></li>
+          <li><a href="../../rohd/Logic/gt.html">gt</a></li>
+          <li><a href="../../rohd/Logic/gte.html">gte</a></li>
           <li><a class="deprecated" href="../../rohd/Logic/hasValidValue.html">hasValidValue</a></li>
           <li><a href="../../rohd/Logic/incr.html">incr</a></li>
           <li><a href="../../rohd/Logic/inject.html">inject</a></li>
@@ -146,6 +142,7 @@
           <li><a href="../../rohd/Logic/lte.html">lte</a></li>
           <li><a href="../../rohd/Logic/makeUnassignable.html">makeUnassignable</a></li>
           <li><a href="../../rohd/Logic/mulAssign.html">mulAssign</a></li>
+          <li><a href="../../rohd/Logic/neq.html">neq</a></li>
           <li class="inherited"><a href="https://api.dart.dev/stable/2.19.6/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
           <li><a href="../../rohd/Logic/or.html">or</a></li>
           <li><a href="../../rohd/Logic/put.html">put</a></li>

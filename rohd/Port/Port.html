@@ -72,9 +72,7 @@
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">Port(String name, [int width = 1]) : super(name: name, width: width) {
   if (!Sanitizer.isSanitary(name)) {
-    throw Exception(
-        &#39;Invalid name &quot;$name&quot;, must be legal SystemVerilog and not collide&#39;
-        &#39; with any keywords.&#39;);
+    throw InvalidPortNameException(name);
   }
 }</code></pre>
 </section>
@@ -137,6 +135,8 @@
           <li class="inherited"><a href="../../rohd/Logic/eq.html">eq</a></li>
           <li class="inherited"><a href="../../rohd/Logic/getRange.html">getRange</a></li>
           <li class="inherited"><a href="../../rohd/Logic/gets.html">gets</a></li>
+          <li class="inherited"><a href="../../rohd/Logic/gt.html">gt</a></li>
+          <li class="inherited"><a href="../../rohd/Logic/gte.html">gte</a></li>
           <li class="inherited"><a class="deprecated" href="../../rohd/Logic/hasValidValue.html">hasValidValue</a></li>
           <li class="inherited"><a href="../../rohd/Logic/incr.html">incr</a></li>
           <li class="inherited"><a href="../../rohd/Logic/inject.html">inject</a></li>
@@ -146,6 +146,7 @@
           <li class="inherited"><a href="../../rohd/Logic/lte.html">lte</a></li>
           <li class="inherited"><a href="../../rohd/Logic/makeUnassignable.html">makeUnassignable</a></li>
           <li class="inherited"><a href="../../rohd/Logic/mulAssign.html">mulAssign</a></li>
+          <li class="inherited"><a href="../../rohd/Logic/neq.html">neq</a></li>
           <li class="inherited"><a href="https://api.dart.dev/stable/2.19.6/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
           <li class="inherited"><a href="../../rohd/Logic/or.html">or</a></li>
           <li class="inherited"><a href="../../rohd/Logic/put.html">put</a></li>

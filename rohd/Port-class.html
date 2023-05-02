@@ -132,7 +132,7 @@ per <a href="../rohd/Simulator-class.html">Simulator</a> tick, iff the value of 
 </dt>
 <dd class="inherited">
   An <a href="https://api.dart.dev/stable/2.19.6/dart-core/Iterable-class.html">Iterable</a> of all <code>Logic</code>s that are being directly driven by <code>this</code>.
-  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+  <div class="features"><span class="feature">late</span><span class="feature">final</span><span class="feature">inherited</span></div>
 
 </dd>
 
@@ -376,27 +376,27 @@ from <code>0</code> to <code>1</code>.
 </dd>
 
         <dt id="decr" class="callable inherited">
-  <span class="name"><a href="../rohd/Logic/decr.html">decr</a></span><span class="signature">(<wbr><span class="parameter" id="decr-param-decrVal">[<span class="type-annotation">dynamic</span> <span class="parameter-name">decrVal</span>]</span>)
+  <span class="name"><a href="../rohd/Logic/decr.html">decr</a></span><span class="signature">(<wbr><span class="parameter" id="decr-param-s">{<span class="type-annotation"><a href="../rohd/Logic-class.html">Logic</a></span> <span class="parameter-name">s</span>(<span class="parameter" id="param-"><span class="type-annotation"><a href="../rohd/Logic-class.html">Logic</a></span></span>) = <span class="default-value">_nopS</span>, </span><span class="parameter" id="decr-param-val"><span class="type-annotation">dynamic</span> <span class="parameter-name">val</span> = <span class="default-value">1</span>}</span>)
     <span class="returntype parameter">&#8594; <a href="../rohd/ConditionalAssign-class.html">ConditionalAssign</a></span>
   </span>
   
 
 </dt>
 <dd class="inherited">
-  Shorthand for a <a href="../rohd/Conditional-class.html">Conditional</a> which decrements this by <code>decrVal</code>
+  Shorthand for a <a href="../rohd/Conditional-class.html">Conditional</a> which decrements this by <code>val</code>.
   <div class="features"><span class="feature">inherited</span></div>
 
 </dd>
 
         <dt id="divAssign" class="callable inherited">
-  <span class="name"><a href="../rohd/Logic/divAssign.html">divAssign</a></span><span class="signature">(<wbr><span class="parameter" id="divAssign-param-divVal"><span class="type-annotation">dynamic</span> <span class="parameter-name">divVal</span></span>)
+  <span class="name"><a href="../rohd/Logic/divAssign.html">divAssign</a></span><span class="signature">(<wbr><span class="parameter" id="divAssign-param-s">{<span class="type-annotation"><a href="../rohd/Logic-class.html">Logic</a></span> <span class="parameter-name">s</span>(<span class="parameter" id="param-"><span class="type-annotation"><a href="../rohd/Logic-class.html">Logic</a></span></span>) = <span class="default-value">_nopS</span>, </span><span class="parameter" id="divAssign-param-val"><span class="type-annotation">dynamic</span> <span class="parameter-name">val</span>}</span>)
     <span class="returntype parameter">&#8594; <a href="../rohd/ConditionalAssign-class.html">ConditionalAssign</a></span>
   </span>
   
 
 </dt>
 <dd class="inherited">
-  Shorthand for a <a href="../rohd/Conditional-class.html">Conditional</a> which increments this by <code>divVal</code>
+  Shorthand for a <a href="../rohd/Conditional-class.html">Conditional</a> which increments this by <code>val</code>.
   <div class="features"><span class="feature">inherited</span></div>
 
 </dd>
@@ -441,6 +441,32 @@ from <code>0</code> to <code>1</code>.
 
 </dd>
 
+        <dt id="gt" class="callable inherited">
+  <span class="name"><a href="../rohd/Logic/gt.html">gt</a></span><span class="signature">(<wbr><span class="parameter" id="gt-param-other"><span class="type-annotation">dynamic</span> <span class="parameter-name">other</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../rohd/Logic-class.html">Logic</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Greater-than.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="gte" class="callable inherited">
+  <span class="name"><a href="../rohd/Logic/gte.html">gte</a></span><span class="signature">(<wbr><span class="parameter" id="gte-param-other"><span class="type-annotation">dynamic</span> <span class="parameter-name">other</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../rohd/Logic-class.html">Logic</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Greater-than-or-equal-to.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
         <dt id="hasValidValue" class="callable inherited">
   <span class="name deprecated"><a class="deprecated" href="../rohd/Logic/hasValidValue.html">hasValidValue</a></span><span class="signature">(<wbr>)
     <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/2.19.6/dart-core/bool-class.html">bool</a></span>
@@ -455,14 +481,14 @@ from <code>0</code> to <code>1</code>.
 </dd>
 
         <dt id="incr" class="callable inherited">
-  <span class="name"><a href="../rohd/Logic/incr.html">incr</a></span><span class="signature">(<wbr><span class="parameter" id="incr-param-incrVal">[<span class="type-annotation">dynamic</span> <span class="parameter-name">incrVal</span>]</span>)
+  <span class="name"><a href="../rohd/Logic/incr.html">incr</a></span><span class="signature">(<wbr><span class="parameter" id="incr-param-s">{<span class="type-annotation"><a href="../rohd/Logic-class.html">Logic</a></span> <span class="parameter-name">s</span>(<span class="parameter" id="param-"><span class="type-annotation"><a href="../rohd/Logic-class.html">Logic</a></span></span>) = <span class="default-value">_nopS</span>, </span><span class="parameter" id="incr-param-val"><span class="type-annotation">dynamic</span> <span class="parameter-name">val</span> = <span class="default-value">1</span>}</span>)
     <span class="returntype parameter">&#8594; <a href="../rohd/ConditionalAssign-class.html">ConditionalAssign</a></span>
   </span>
   
 
 </dt>
 <dd class="inherited">
-  Shorthand for a <a href="../rohd/Conditional-class.html">Conditional</a> which increments this by <code>incrVal</code>
+  Shorthand for a <a href="../rohd/Conditional-class.html">Conditional</a> which increments this by <code>val</code>.
   <div class="features"><span class="feature">inherited</span></div>
 
 </dd>
@@ -548,14 +574,27 @@ conditional (<code>&lt;</code>) assignment.
 </dd>
 
         <dt id="mulAssign" class="callable inherited">
-  <span class="name"><a href="../rohd/Logic/mulAssign.html">mulAssign</a></span><span class="signature">(<wbr><span class="parameter" id="mulAssign-param-mulVal"><span class="type-annotation">dynamic</span> <span class="parameter-name">mulVal</span></span>)
+  <span class="name"><a href="../rohd/Logic/mulAssign.html">mulAssign</a></span><span class="signature">(<wbr><span class="parameter" id="mulAssign-param-s">{<span class="type-annotation"><a href="../rohd/Logic-class.html">Logic</a></span> <span class="parameter-name">s</span>(<span class="parameter" id="param-"><span class="type-annotation"><a href="../rohd/Logic-class.html">Logic</a></span></span>) = <span class="default-value">_nopS</span>, </span><span class="parameter" id="mulAssign-param-val"><span class="type-annotation">dynamic</span> <span class="parameter-name">val</span>}</span>)
     <span class="returntype parameter">&#8594; <a href="../rohd/ConditionalAssign-class.html">ConditionalAssign</a></span>
   </span>
   
 
 </dt>
 <dd class="inherited">
-  Shorthand for a <a href="../rohd/Conditional-class.html">Conditional</a> which increments this by <code>mulVal</code>
+  Shorthand for a <a href="../rohd/Conditional-class.html">Conditional</a> which increments this by <code>val</code>.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="neq" class="callable inherited">
+  <span class="name"><a href="../rohd/Logic/neq.html">neq</a></span><span class="signature">(<wbr><span class="parameter" id="neq-param-other"><span class="type-annotation">dynamic</span> <span class="parameter-name">other</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../rohd/Logic-class.html">Logic</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Logical inequality.
   <div class="features"><span class="feature">inherited</span></div>
 
 </dd>
@@ -990,7 +1029,7 @@ as the most significant bits.
         <li><a href="../rohd/GreaterThan-class.html">GreaterThan</a></li>
         <li><a href="../rohd/GreaterThanOrEqual-class.html">GreaterThanOrEqual</a></li>
         <li><a href="../rohd/If-class.html">If</a></li>
-        <li><a href="../rohd/IfBlock-class.html">IfBlock</a></li>
+        <li><a class="deprecated" href="../rohd/IfBlock-class.html">IfBlock</a></li>
         <li><a href="../rohd/IndexGate-class.html">IndexGate</a></li>
         <li><a href="../rohd/Interface-class.html">Interface</a></li>
         <li><a href="../rohd/LessThan-class.html">LessThan</a></li>
@@ -1003,6 +1042,7 @@ as the most significant bits.
         <li><a href="../rohd/Modulo-class.html">Modulo</a></li>
         <li><a href="../rohd/Multiply-class.html">Multiply</a></li>
         <li><a href="../rohd/Mux-class.html">Mux</a></li>
+        <li><a href="../rohd/NotEquals-class.html">NotEquals</a></li>
         <li><a href="../rohd/NotGate-class.html">NotGate</a></li>
         <li><a href="../rohd/Or2Gate-class.html">Or2Gate</a></li>
         <li><a href="../rohd/OrUnary-class.html">OrUnary</a></li>
@@ -1034,7 +1074,6 @@ as the most significant bits.
 
       <li class="section-title"><a href="../rohd/rohd-library.html#mixins">Mixins</a></li>
         <li><a href="../rohd/CustomSystemVerilog-mixin.html">CustomSystemVerilog</a></li>
-        <li><a href="../rohd/FullyCombinational-mixin.html">FullyCombinational</a></li>
         <li><a href="../rohd/InlineSystemVerilog-mixin.html">InlineSystemVerilog</a></li>
 
 
@@ -1100,6 +1139,8 @@ as the most significant bits.
           <li class="inherited"><a href="../rohd/Logic/eq.html">eq</a></li>
           <li class="inherited"><a href="../rohd/Logic/getRange.html">getRange</a></li>
           <li class="inherited"><a href="../rohd/Logic/gets.html">gets</a></li>
+          <li class="inherited"><a href="../rohd/Logic/gt.html">gt</a></li>
+          <li class="inherited"><a href="../rohd/Logic/gte.html">gte</a></li>
           <li class="inherited"><a class="deprecated" href="../rohd/Logic/hasValidValue.html">hasValidValue</a></li>
           <li class="inherited"><a href="../rohd/Logic/incr.html">incr</a></li>
           <li class="inherited"><a href="../rohd/Logic/inject.html">inject</a></li>
@@ -1109,6 +1150,7 @@ as the most significant bits.
           <li class="inherited"><a href="../rohd/Logic/lte.html">lte</a></li>
           <li class="inherited"><a href="../rohd/Logic/makeUnassignable.html">makeUnassignable</a></li>
           <li class="inherited"><a href="../rohd/Logic/mulAssign.html">mulAssign</a></li>
+          <li class="inherited"><a href="../rohd/Logic/neq.html">neq</a></li>
           <li class="inherited"><a href="https://api.dart.dev/stable/2.19.6/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
           <li class="inherited"><a href="../rohd/Logic/or.html">or</a></li>
           <li class="inherited"><a href="../rohd/Logic/put.html">put</a></li>
