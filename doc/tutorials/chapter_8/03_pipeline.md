@@ -61,11 +61,12 @@ We can build carry save multiplier using carry save adder built in [chapter 5](.
 
 ![carrysave multiplier](./assets/4x4-bits-Carry-Save-Multiplier-2.png)
 
-Assume that we have binary input **A = 1100** (decimal: 12) and **B = 0010** (decimal: 2). The final results would be **11000** (decimal: 24).
+Assuming that we have binary input A = 1100 (decimal: 12) and B = 0010 (decimal: 2), the final result would be 11000 (decimal: 24).
 
-The **first stage** of the carry save multiplier consists of Full Adder that takes in AND gate of `Ax` and `B0` where `x` is the bit position of the inputs a.
-
+The **first stage** of the carry-save multiplier consists of a Full Adder that takes in the AND gate of `Ax` and `B0`, where x is the bit position of the input a.
 In the stage 0, the full adder takes in:
+
+In stage 0, the full adder takes in:
 
 - Inputs
   - A: 0
@@ -76,14 +77,13 @@ In the stage 2 to 4, the full adder takes:
 
 - Inputs
   - A: Output **Sum** from previous stage
-  - B: AND(Ax, By), where x is the single bit of the A, while y is the bits based on stage.
+  - B: AND(Ax, By), where x is the single bit of A, while y is the bits based on stage.
   - C-IN: Output **carry-out** from previous stage
 
-Also notice the diagram, the first index of the FA always takes in 0 as input A and the **final stage** is consists of the **N-Bit Adder** we created previously.
-
+As shown in the diagram, the first index of the FA always takes 0 as input A, and the **final stage** consists of the **N-Bit Adder** we created previously.
 Note that n-bit adder is also called as ripple carry adder.
 
-Let start by creating the `CarrySaveMultiplier` Module. The module takes in inputs `a`, `b` and a `clk` and return an output port named `product`. We will also need two internal signals `rCarryA` and `rCarryB` where its will contains the signals to be passed to the nBitAdder or ripple carry adder later in the final stage.
+Let's start by creating the `CarrySaveMultiplier` module. The module takes inputs `a`, `b`, and a `clk`, and returns an output port named `product`. We will also need two internal signals, `rCarryA` and `rCarryB`, which will contain the signals to be passed to the nBitAdder or ripple carry adder later in the final stage.
 
 ```dart
 class CarrySaveMultiplier extends Module {
@@ -95,22 +95,21 @@ class CarrySaveMultiplier extends Module {
 
     final rCarryA = Logic(name: 'rcarry_a', width: a.width);
     final rCarryB = Logic(name: 'rcarry_b', width: b.width);
-
   }
 }
 ```
 
-Since we will be using `FullAdder` and `NBitAdder` module in chapter 5. We will need to import the module from chapter 5.
+Since we will be using `FullAdder` and `NBitAdder` modules in chapter 5, we need to import them.
 
 ```dart
 import '../chapter_5/n_bit_adder.dart';
 ```
 
-Back to our Module, we will need to declare the pipeline using `Pipeline` class. `Pipeline` takes in a clock `clk` and a list of stages. Well, we can think of every pipeline stage is a row. While every row will have `(a.width - 1) + row`.
+To implement the pipeline, we need to declare a `Pipeline` object with a clock `clk` and a list of stages. Each stage can be thought of as a row, and each row will have `(a.width - 1) + row` columns.
 
-The first stage or row of `FullAdder` will takes in 0 for `a` and `c-in`. We can also see that for every first column, the input `a` will also be 0. Therefore, we can represent `a` as `column == (a.width - 1) + row || row == 0 ? Const(0) : p.get(sum[column])`. Same goes to `carryIn`, where we can represent `carryIn` as `row == 0 ? Const(0) : p.get(carry[column - 1])`.
+For the first stage or row of `FullAdder`, we need to set `a` and `c-in` to 0. Additionally, for every first column, `a` will also be 0. Therefore, we can represent `a` as `column == (a.width - 1) + row || row == 0 ? Const(0) : p.get(sum[column])`. Similarly, we can represent `carryIn` as `row == 0 ? Const(0) : p.get(carry[column - 1])`.
 
-Note that, we use `p.get()` to get the data from previous pipeline. As for `b`, we can represent using simple `AND` operation `a[column - row] & b[row]`.
+Note that we use `p.get()` to retrieve data from the previous pipeline stage. As for `b`, we can represent it using a simple `AND` operation: `a[column - row] & b[row]`.
 
 Summary:
 
@@ -118,7 +117,7 @@ Summary:
 - b: `a[column - row] & b[row]`
 - c-in: `row == 0 ? Const(0) : p.get(carry[column - 1])`
 
-Inside the pipeline stages, we can use `...List.generate()` to generate the FullAdder.
+In each pipeline stage, we can use `...List.generate()` to generate the `FullAdder`.
 
 ```dart
 pipeline = Pipeline(clk, stages: [
@@ -151,7 +150,7 @@ pipeline = Pipeline(clk, stages: [
 ]);
 ```
 
-By doing this, we have successfully created stages 0 to 3. Then, we also want to manually add the last stage where we just swizzle the `sum` and `carry` and connect to `rCarryA` and `rCarryB` respectively.
+We have successfully created stages 0 to 3. Next, we manually add the final stage where we swizzle the `sum` and `carry` and connect them to `rCarryA` and `rCarryB`, respectively.
 
 ```dart
 ...
@@ -175,7 +174,7 @@ By doing this, we have successfully created stages 0 to 3. Then, we also want to
 ]
 ```
 
-To get our final result, we can instantiate our `NBitAdder` module and pass `rCarryA` and `rCarryB` to the module. Lastly, we need to swizzle the results from nBitAdder and last 4 bits from the pipieline.
+To obtain our final result, we can instantiate the `NBitAdder` module and pass `rCarryA` and `rCarryB` to the module. Finally, we need to swizzle the results from `nBitAdder` and the last four bits from the pipeline.
 
 ```dart
 final nBitAdder = NBitAdder(rCarryA, rCarryB);
