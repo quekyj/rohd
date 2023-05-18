@@ -79,7 +79,7 @@ Future<void> main({bool noPrint = false}) async {
     // Let's specify where we want our SystemVerilog simulation to run.
     // This is the directory where temporary files, waves, and output
     // logs may appear.
-    directory: './example/tmp_cosim/',
+    directory: './doc/tutorials/chapter_9/cosim_tmp/',
   ));
 
   // Now let's try simulating!
@@ -92,7 +92,8 @@ Future<void> main({bool noPrint = false}) async {
   // Note that this is a separate VCD file from what the SystemVerilog simulator
   // will dump out.
   if (!noPrint) {
-    WaveDumper(counter, outputPath: './example/tmp_cosim/rohd_waves.vcd');
+    WaveDumper(counter,
+        outputPath: './doc/tutorials/chapter_9/cosim_tmp/rohd_waves.vcd');
   }
 
   // Drop reset at time 25.
