@@ -308,3 +308,8 @@ Future<void> main({bool noPrint = false}) async {
 ```
 
 Congratulation! You have successfully run external system verilog code in ROHD ecosystem. You can find the executable code at [counter_cosim.dart](./counter_cosim.dart).
+
+## Exercise
+
+1. Can you try to run the cosimulation with [answer/shift_register.sv](./answers/shift_register.sv) given?
+    - Answer to this exercise can be found at [answer/exercise.dart](./answers/exercise.dart)
