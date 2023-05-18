@@ -39,6 +39,12 @@ You can find the installation guide for `cocotb` at [https://docs.cocotb.org/en/
 pip install cocotb
 ```
 
+Then, you need to run install the cosim packages using the command below:
+
+```dart
+dart pub add rohd_cosim
+```
+
 You will need your favourite SystemVerilog simulator to do simulation between ROHD and SystemVerilog modules. ROHD Cosim does not do any SystemVerilog parsing and SystemVerilog simulation.
 
 ## Using ROHD Cosimulation
