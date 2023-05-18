@@ -13,6 +13,7 @@ doc/api/
 tmp_test/
 *.sv
 !counter.sv
+!shift_register.sv
 *.vcd
 *_fsm.md
 .vscode/*
