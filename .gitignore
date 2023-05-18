@@ -12,6 +12,7 @@ doc/api/
 # Other stuff
 tmp_test/
 *.sv
+!counter.sv
 *.vcd
 *_fsm.md
 .vscode/*
