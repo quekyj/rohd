@@ -1,12 +1,20 @@
 # Content
 
+- [What is ROHD Cosim](#what-is-rohd-cosim)
+- [Pre-requisite](#pre-requisite)
+- [Using ROHD Cosimulation](#using-rohd-cosimulation)
+  - [Step 1: Wrap your System Verilog Module](#step-1-wrap-your-system-verilog-module)
+  - [Step 2: Generate a connector and start the cosimulation](#step-2-generate-a-connector-and-start-the-cosimulation)
+    - [Additional Information](#additional-information)
+- [Counter Module With ROHD Cosim](#counter-module-with-rohd-cosim)
+
 ## Learning Outcome
 
 In this chapter:
 
 - You learn what is rohd-cosim and how to co-simulate system verilog code with ROHD dart RTL design.
 
-## What is ROHD Cosim
+## What is ROHD Cosim?
 
 Imagine a situation where you designed a piece of hardware using ROHD. Then, you suddenly wish to reuse a piece of old design that are written in system verilog. Here, we have ROHD Cosim come to your rescue.
 
@@ -196,5 +204,101 @@ class Counter extends ExternalSystemVerilogModule with Cosim {
         clk = addInput('clk', clk);
         addOutput('val', width: width);
     }
+},
+```
+
+So, our `Counter` external system verilog module is done. We can now work on the Simulation. Let start by creating the `main()` function as usual to test on our module. Let define our inputs `clk`, `en`, and `reset`. We can also create a `counter` Module and `build()` it.
+
+```dart
+Future<void> main({bool noPrint = false}) async {
+  // Define some local signals.
+  final en = Logic(name: 'en');
+  final reset = Logic(name: 'reset');
+
+  // Generate a simple clock.  This will run along by itself as
+  // the Simulator goes.
+  final clk = SimpleClockGenerator(10).clk;
+
+  // Make our cosimulated counter.
+  final counter = Counter(en, reset, clk);
+
+  // Before we can simulate or generate code with the counter, we need
+  // to build it.
+  await counter.build();
 }
 ```
+
+Still remember we talked previously, to simulate ROHD cosim, we need to use `Cosim.connectCosimulation()`. Let wrap our configuration `ConsimWrapConfig()` with `SystemVerilogSimulator.icarus`, generate waveform with `dumpWaves: !noPrint` and the directory is `./example/tmp_cosim/`.
+
+```dart
+Future<void> main({bool noPrint = false}) async {
+  ...
+  // **Important for Cosim!**
+  // We must connect to the cosimulation process with configuration information.
+  await Cosim.connectCosimulation(CosimWrapConfig(
+    // The SystemVerilog will simulate with Icarus Verilog
+    SystemVerilogSimulator.icarus,
+
+    // We can generate waves from the SystemVerilog simulator.
+    dumpWaves: !noPrint,
+
+    // Let's specify where we want our SystemVerilog simulation to run.
+    // This is the directory where temporary files, waves, and output
+    // logs may appear.
+    directory: './example/tmp_cosim/',
+  ));
+}
+```
+
+And now, we can try to simulate our `Counter` module with ROHD `Simulator`.
+
+```dart
+Future<void> main({bool noPrint = false}) async {
+  ...
+  // Now let's try simulating!
+  // Let's start off with a disabled counter and asserting reset.
+  en.inject(0);
+  reset.inject(1);
+
+  // Attach a waveform dumper so we can see what happens in the ROHD simulator.
+  // Note that this is a separate VCD file from what the SystemVerilog simulator
+  // will dump out.
+  if (!noPrint) {
+    WaveDumper(counter, outputPath: './example/tmp_cosim/rohd_waves.vcd');
+  }
+
+  // Drop reset at time 25.
+  Simulator.registerAction(25, () => reset.put(0));
+
+  // Raise enable at time 45.
+  Simulator.registerAction(45, () => en.put(1));
+
+  // Print a message every time the counter value changes.
+  counter.val.changed.listen((event) {
+    if (!noPrint) {
+      print('Value of the counter changed @${Simulator.time}: $event');
+    }
+  });
+
+  // Print a message when we're done with the simulation!
+  Simulator.registerAction(100, () {
+    if (!noPrint) {
+      print('Simulation completed!');
+    }
+  });
+
+  // Set a maximum time for the simulation so it doesn't keep running forever.
+  Simulator.setMaxSimTime(100);
+
+  // Kick off the simulation.
+  await Simulator.run();
+
+  // We can take a look at the waves now.
+  if (!noPrint) {
+    print('To view waves, check out waves with a waveform viewer'
+        ' (e.g. `gtkwave waves.vcd` and `gtkwave rohd_waves.vcd`).');
+  }
+}
+```
+
+Congratulation! You have successfully run external system verilog code in ROHD ecosystem. You can find the executable code at [counter_cosim.dart](./counter_cosim.dart).
