@@ -1,0 +1,71 @@
+import 'package:rohd/rohd.dart';
+
+import 'answers/exercise_1_spi.dart';
+
+enum PortDir { port }
+
+class ModInterface extends Interface<PortDir> {
+  final int width;
+  Logic get port0 => port('port_0');
+  Logic get port1 => port('port_1');
+  Logic get port2 => port('port_2');
+  Logic get port3 => port('port_3');
+  Logic get port4 => port('port_4');
+  Logic get port5 => port('port_5');
+  Logic get port6 => port('port_6');
+  Logic get port7 => port('port_7');
+  Logic get port8 => port('port_8');
+  Logic get port9 => port('port_9');
+
+  ModInterface({this.width = 8}) {
+    setPorts(
+      List.generate(10, (index) => Port('port_$index')),
+      [PortDir.port],
+    );
+  }
+}
+
+class ModuleA extends Module {
+  ModuleA(ModInterface intf) : super(name: 'moduleA') {
+    final modA = ModInterface()
+      ..connectIO(
+        this,
+        intf,
+        inputTags: {PortDir.port},
+      );
+  }
+}
+
+class ModuleB extends Module {
+  ModuleB(ModInterface intf) : super(name: 'moduleB') {
+    final modB = ModInterface()
+      ..connectIO(
+        this,
+        intf,
+        outputTags: {PortDir.port},
+      );
+
+    modB.port0 <= Const(1);
+    modB.port1 <= Const(1);
+    modB.port2 <= Const(0);
+    modB.port3 <= Const(0);
+    modB.port4 <= Const(1);
+    modB.port5 <= Const(0);
+    modB.port6 <= Const(1);
+    modB.port7 <= Const(0);
+    modB.port8 <= Const(1);
+    modB.port9 <= Const(1);
+  }
+}
+
+class TestBench extends Module {
+  TestBench() {
+    final intf = ModInterface();
+
+    final modA = ModuleA(intf);
+    final modB = ModuleB(intf);
+
+    // connect module B to module A
+    modB <= modA;
+  }
+}
