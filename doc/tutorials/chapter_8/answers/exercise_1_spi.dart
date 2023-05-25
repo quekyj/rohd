@@ -36,12 +36,12 @@ class SPIInterface extends Interface<SPIDirection> {
 }
 
 class Controller extends Module {
-  late final SPIInterface controller;
   late final Logic _reset;
   late final Logic _clk;
   late final Logic _sin;
 
-  Controller(SPIInterface controller, Logic reset, Logic clk, Logic sin) {
+  Controller(SPIInterface intf, Logic reset, Logic clk, Logic sin)
+      : super(name: 'controller') {
     // set input port to private variable instead,
     // we don't want other class to access this
     _reset = addInput('reset', reset);
@@ -50,24 +50,24 @@ class Controller extends Module {
 
     // define a new interface, and connect it
     // to the interface passed in.
-    this.controller = SPIInterface()
+    intf = SPIInterface()
       ..connectIO(
         this,
-        controller,
+        intf,
         inputTags: {SPIDirection.peripheralOutput}, // Add inputs
         outputTags: {SPIDirection.controllerOutput}, // Add outputs
       );
 
-    controller.cs <= Const(1);
-    controller.sck <= _clk;
+    intf.cs <= Const(1);
+    intf.sck <= _clk;
 
-    Sequential(controller.sck, [
+    Sequential(intf.sck, [
       IfBlock([
         Iff(_reset, [
-          controller.sdi < 0,
+          intf.sdi < 0,
         ]),
         Else([
-          controller.sdi < _sin,
+          intf.sdi < _sin,
         ]),
       ])
     ]);
@@ -134,10 +134,16 @@ void main() async {
   final peri = Peripheral(testInterface);
   await peri.build();
 
+  final reset = Logic();
+  final sin = Logic();
+  final tb = TestBench(reset, sin);
+
+  await tb.build();
+
+  print(tb.generateSynth());
+
   testInterface.cs.inject(0);
   testInterface.sdi.inject(0);
-
-  print(peri.generateSynth());
 
   void printFlop([String message = '']) {
     print('@t=${Simulator.time}:\t'
