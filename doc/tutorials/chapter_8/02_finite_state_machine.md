@@ -37,11 +37,11 @@ Transitions between states would be triggered by events such as button presses o
 
 In ROHD, there are abstraction level of writting FSM. Yes, you can definitely wrote the code using Sequential and Combinational like previous chapter. But, today we want to see how we can leverage the abstraction layer provided in ROHD to quickly create the Oven FSM above.
 
-First, we want to import the ROHD package and also `counter` module from the [example](./../../../example/example.dart). I already created a symbolic link of the following `example` module to current directory. So, you can just import the `example` using `import './example.dart'`.
+First, we want to import the ROHD package and also `counter` module. We can use the counter interface we created last session.
 
 ```dart
 import 'package:rohd/rohd.dart';
-import './example.dart';
+import './counter_interface.dart';
 ```
 
 We also want to represent the standby, cooking, paused, and completed states and the buttons start, pause and resume in dart enums. However, we want to one-hot encoded the buttons with custom value with dart enhanced enums.
@@ -97,7 +97,7 @@ class OvenModule extends Module {
 
 This oven will receive button and reset signal as input and output a led light. Let add the inputs and output port now. Also create a getter for the LED as the output.
 
-Let also create an internal clock generator `clk` inside the module. This clk generator will be shared with the FSM and     `counter` module. Let instantiate the counter module, together with internal signals reset `counterReset` and enable `en`.
+Let also create an internal clock generator `clk` inside the module. This clk generator will be shared with the FSM and `counter` module. Let instantiate the counter module, together with internal signals reset `counterReset` and enable `en`.
 
 ```dart
 class OvenModule extends Module {
@@ -113,7 +113,12 @@ class OvenModule extends Module {
         final clk = SimpleClockGenerator(10).clk;
         final counterReset = Logic(name: 'counter_reset');
         final en = Logic(name: 'counter_en');
-        final counter = Counter(en, counterReset, clk, name: 'counter_module');
+        final counterInterface = CounterInterface();
+        counterInterface.clk <= clk;
+        counterInterface.en <= en;
+        counterInterface.reset <= counterReset;
+
+        final counter = Counter(counterInterface);
     }
 }
 ```
