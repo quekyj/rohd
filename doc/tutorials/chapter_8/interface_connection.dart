@@ -1,7 +1,5 @@
 import 'package:rohd/rohd.dart';
 
-import 'answers/exercise_1_spi.dart';
-
 enum PortDir { port }
 
 class ModInterface extends Interface<PortDir> {
@@ -26,6 +24,7 @@ class ModInterface extends Interface<PortDir> {
 }
 
 class ModuleA extends Module {
+  Logic get out => output('out_res');
   ModuleA(ModInterface intf) : super(name: 'moduleA') {
     final modA = ModInterface()
       ..connectIO(
@@ -33,11 +32,15 @@ class ModuleA extends Module {
         intf,
         inputTags: {PortDir.port},
       );
+
+    final out = addOutput('out_res');
+
+    out <= modA.port0;
   }
 }
 
 class ModuleB extends Module {
-  ModuleB(ModInterface intf) : super(name: 'moduleB') {
+  ModuleB(ModInterface intf, Logic clk) : super(name: 'moduleB') {
     final modB = ModInterface()
       ..connectIO(
         this,
@@ -45,27 +48,41 @@ class ModuleB extends Module {
         outputTags: {PortDir.port},
       );
 
-    modB.port0 <= Const(1);
-    modB.port1 <= Const(1);
-    modB.port2 <= Const(0);
-    modB.port3 <= Const(0);
-    modB.port4 <= Const(1);
-    modB.port5 <= Const(0);
-    modB.port6 <= Const(1);
-    modB.port7 <= Const(0);
-    modB.port8 <= Const(1);
-    modB.port9 <= Const(1);
+    Sequential(clk, [
+      modB.port0 < Const(1),
+      modB.port1 < Const(1),
+      modB.port2 < Const(0),
+      modB.port3 < Const(0),
+      modB.port4 < Const(1),
+      modB.port5 < Const(0),
+      modB.port6 < Const(1),
+      modB.port7 < Const(0),
+      modB.port8 < Const(1),
+      modB.port9 < Const(1),
+    ]);
   }
 }
 
 class TestBench extends Module {
-  TestBench() {
-    final intf = ModInterface();
+  Logic get out => output('data_out');
+  final intf = ModInterface();
 
+  TestBench(Logic clk) {
+    final out = addOutput('data_out');
+
+    // Output of module B connect to Module A
     final modA = ModuleA(intf);
-    final modB = ModuleB(intf);
+    final modB = ModuleB(intf, clk);
 
-    // connect module B to module A
-    modB <= modA;
+    out <= modA.out;
   }
+}
+
+void main() async {
+  final intf = ModInterface();
+  final clk = SimpleClockGenerator(10).clk;
+  final tb = TestBench(clk);
+  await tb.build();
+
+  print(tb.generateSynth());
 }
