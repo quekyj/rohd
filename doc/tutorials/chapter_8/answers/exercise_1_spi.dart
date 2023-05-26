@@ -124,6 +124,8 @@ class TestBench extends Module {
 
     final ctrl = Controller(spiInterface, reset, clk, sin);
     final peripheral = Peripheral(spiInterface);
+
+    sout <= peripheral.sout;
   }
 }
 
