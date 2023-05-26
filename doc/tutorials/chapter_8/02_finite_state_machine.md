@@ -242,7 +242,7 @@ By now, you already have a list of `state` ready to be passed to the `StateMachi
 _oven = StateMachine<OvenState>(clk, reset, OvenState.standby, states);
 ```
 
-Let aslo create a getter to expose `_oven` to the public as we can used it to generate a FSM diagram.
+Let also create a getter to expose `_oven` to the public as we can used it to generate a FSM diagram.
 
 ```dart
 StateMachine<OvenState> get ovenStateMachine => _oven;
