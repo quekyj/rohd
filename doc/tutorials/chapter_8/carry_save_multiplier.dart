@@ -91,8 +91,6 @@ class CarrySaveMultiplier extends Module {
   Logic get product => output('product');
 }
 
-// TODO: make sure its work for any diff width
-// TODO: multiplier as base class
 void main() async {
   final a = Logic(name: 'a', width: 4);
   final b = Logic(name: 'b', width: 4);
