@@ -65,7 +65,7 @@ We can build carry save multiplier using carry save adder built in [chapter 5](.
 
 ![carrysave multiplier](./assets/4x4-bits-Carry-Save-Multiplier-2.png)
 
-Assuming that we have binary input A = 1100 (decimal: 12) and B = 0010 (decimal: 2), the final result would be 11000 (decimal: 24).
+Assuming that we have binary input A = 1010 (decimal: 10) and B = 1110 (decimal: 14), the final result would be 10001100 (decimal: 140).
 
 The **first stage** of the carry-save multiplier consists of a Full Adder that takes in the AND gate of `Ax` and `B0`, where x is the bit position of the input a.
 In the stage 0, the full adder takes in:
@@ -278,8 +278,8 @@ void main() async {
   await csm.build();
 
   // after one cycle, change the value of a and b
-  a.inject(12);
-  b.inject(2);
+  a.inject(10);
+  b.inject(14);
   reset.inject(1);
 
   // Attach a waveform dumper so we can see what happens.

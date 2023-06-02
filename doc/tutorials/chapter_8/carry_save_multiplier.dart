@@ -102,8 +102,8 @@ void main() async {
   await csm.build();
 
   // after one cycle, change the value of a and b
-  a.inject(12);
-  b.inject(2);
+  a.inject(10);
+  b.inject(14);
   reset.inject(1);
 
   // Attach a waveform dumper so we can see what happens.
