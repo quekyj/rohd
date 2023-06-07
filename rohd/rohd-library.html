@@ -158,6 +158,14 @@ under certain conditions.
   An assignment that only happens under certain conditions.
 </dd>
 
+        <dt id="ConditionalGroup">
+  <span class="name "><a href="../rohd/ConditionalGroup-class.html">ConditionalGroup</a></span> 
+
+</dt>
+<dd>
+  Represents a group of <a href="../rohd/Conditional-class.html">Conditional</a>s to be executed.
+</dd>
+
         <dt id="Const">
   <span class="name "><a href="../rohd/Const-class.html">Const</a></span> 
 
@@ -289,6 +297,23 @@ in SystemVerilog.
   Represents a logical signal of any width which can change values.
 </dd>
 
+        <dt id="LogicArray">
+  <span class="name "><a href="../rohd/LogicArray-class.html">LogicArray</a></span> 
+
+</dt>
+<dd>
+  Represents a multi-dimensional array structure of independent <a href="../rohd/Logic-class.html">Logic</a>s.
+</dd>
+
+        <dt id="LogicStructure">
+  <span class="name "><a href="../rohd/LogicStructure-class.html">LogicStructure</a></span> 
+
+</dt>
+<dd>
+  Collects a group of <a href="../rohd/Logic-class.html">Logic</a> signals into one entity which can be manipulated
+in a similar way as an individual <a href="../rohd/Logic-class.html">Logic</a>.
+</dd>
+
         <dt id="LogicValue">
   <span class="name "><a href="../rohd/LogicValue-class.html">LogicValue</a></span> 
 
@@ -399,7 +424,8 @@ boundaries.
 
 </dt>
 <dd>
-  An extension of <a href="../rohd/Logic-class.html">Logic</a> useful for <a href="../rohd/Interface-class.html">Interface</a> definitions.
+  An extension of <a href="../rohd/Logic-class.html">Logic</a> which performs some additional validation for
+inputs and outputs of <a href="../rohd/Module-class.html">Module</a>s.
 </dd>
 
         <dt id="Power">
@@ -586,7 +612,7 @@ can be inlined within other SystemVerilog code.
 
 </dt>
 <dd>
-    Extends <a href="https://api.dart.dev/stable/3.0.2/dart-core/BigInt-class.html">BigInt</a> with utility functions that are useful for dealing with
+    Extends <a href="https://api.dart.dev/stable/3.0.3/dart-core/BigInt-class.html">BigInt</a> with utility functions that are useful for dealing with
 large bit vectors and conversion between types.
 </dd>
 
@@ -619,14 +645,14 @@ large bit vectors and conversion between types.
 
       <dl class="callables">
         <dt id="bin" class="callable">
-  <span class="name"><a href="../rohd/bin.html">bin</a></span><span class="signature">(<wbr><span class="parameter" id="bin-param-s"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.0.2/dart-core/String-class.html">String</a></span> <span class="parameter-name">s</span></span>)
-    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.0.2/dart-core/int-class.html">int</a></span>
+  <span class="name"><a href="../rohd/bin.html">bin</a></span><span class="signature">(<wbr><span class="parameter" id="bin-param-s"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.0.3/dart-core/String-class.html">String</a></span> <span class="parameter-name">s</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.0.3/dart-core/int-class.html">int</a></span>
   </span>
   
 
 </dt>
 <dd>
-  Converts a binary <a href="https://api.dart.dev/stable/3.0.2/dart-core/String-class.html">String</a> representation to a binary <a href="https://api.dart.dev/stable/3.0.2/dart-core/int-class.html">int</a>.
+  Converts a binary <a href="https://api.dart.dev/stable/3.0.3/dart-core/String-class.html">String</a> representation to a binary <a href="https://api.dart.dev/stable/3.0.3/dart-core/int-class.html">int</a>.
   
 
 </dd>
@@ -645,7 +671,7 @@ large bit vectors and conversion between types.
 </dd>
 
         <dt id="rswizzle" class="callable">
-  <span class="name deprecated"><a class="deprecated" href="../rohd/rswizzle.html">rswizzle</a></span><span class="signature">(<wbr><span class="parameter" id="rswizzle-param-signals"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.0.2/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../rohd/Logic-class.html">Logic</a></span>&gt;</span></span> <span class="parameter-name">signals</span></span>)
+  <span class="name deprecated"><a class="deprecated" href="../rohd/rswizzle.html">rswizzle</a></span><span class="signature">(<wbr><span class="parameter" id="rswizzle-param-signals"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.0.3/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../rohd/Logic-class.html">Logic</a></span>&gt;</span></span> <span class="parameter-name">signals</span></span>)
     <span class="returntype parameter">&#8594; <a href="../rohd/Logic-class.html">Logic</a></span>
   </span>
   
@@ -659,7 +685,7 @@ large bit vectors and conversion between types.
 </dd>
 
         <dt id="swizzle" class="callable">
-  <span class="name deprecated"><a class="deprecated" href="../rohd/swizzle.html">swizzle</a></span><span class="signature">(<wbr><span class="parameter" id="swizzle-param-signals"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.0.2/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../rohd/Logic-class.html">Logic</a></span>&gt;</span></span> <span class="parameter-name">signals</span></span>)
+  <span class="name deprecated"><a class="deprecated" href="../rohd/swizzle.html">swizzle</a></span><span class="signature">(<wbr><span class="parameter" id="swizzle-param-signals"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.0.3/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../rohd/Logic-class.html">Logic</a></span>&gt;</span></span> <span class="parameter-name">signals</span></span>)
     <span class="returntype parameter">&#8594; <a href="../rohd/Logic-class.html">Logic</a></span>
   </span>
   
@@ -819,6 +845,7 @@ large bit vectors and conversion between types.
         <li><a href="../rohd/Combinational-class.html">Combinational</a></li>
         <li><a href="../rohd/Conditional-class.html">Conditional</a></li>
         <li><a href="../rohd/ConditionalAssign-class.html">ConditionalAssign</a></li>
+        <li><a href="../rohd/ConditionalGroup-class.html">ConditionalGroup</a></li>
         <li><a href="../rohd/Const-class.html">Const</a></li>
         <li><a href="../rohd/Divide-class.html">Divide</a></li>
         <li><a href="../rohd/Else-class.html">Else</a></li>
@@ -835,6 +862,8 @@ large bit vectors and conversion between types.
         <li><a href="../rohd/LessThan-class.html">LessThan</a></li>
         <li><a href="../rohd/LessThanOrEqual-class.html">LessThanOrEqual</a></li>
         <li><a href="../rohd/Logic-class.html">Logic</a></li>
+        <li><a href="../rohd/LogicArray-class.html">LogicArray</a></li>
+        <li><a href="../rohd/LogicStructure-class.html">LogicStructure</a></li>
         <li><a href="../rohd/LogicValue-class.html">LogicValue</a></li>
         <li><a href="../rohd/LogicValueChanged-class.html">LogicValueChanged</a></li>
         <li><a href="../rohd/LShift-class.html">LShift</a></li>
