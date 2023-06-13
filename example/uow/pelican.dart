@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:rohd/rohd.dart';
 import 'fr_timer.dart';
 import 'pelcont.dart';
@@ -46,8 +47,6 @@ Future<void> main() async {
   final pelican = Pelican(clk, ped, reset);
   await pelican.build();
 
-  print(pelican.generateSynth());
-
   ped.inject(0);
   reset.inject(1);
 
@@ -59,6 +58,9 @@ Future<void> main() async {
   Simulator.registerAction(400, () {
     print(pelican);
   });
+
+  final svPelican = pelican.generateSynth();
+  File('example/uow/pelican.sv').writeAsStringSync(svPelican);
 
   Simulator.registerAction(500, () => ped.put(0));
 
