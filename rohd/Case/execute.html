@@ -64,12 +64,12 @@
       
   <div>
     <ol class="annotation-list">
-        <li>@<a href="https://api.dart.dev/stable/3.1.0/dart-core/override-constant.html">override</a></li>
+        <li>@<a href="https://api.dart.dev/stable/3.1.1/dart-core/override-constant.html">override</a></li>
     </ol>
   </div>
 
 <span class="returntype">void</span>
-<span class="name ">execute</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="execute-param-drivenSignals"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.1.0/dart-core/Set-class.html">Set</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../../rohd/Logic-class.html">Logic</a></span>&gt;</span></span> <span class="parameter-name">drivenSignals</span>, </span></li>
+<span class="name ">execute</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="execute-param-drivenSignals"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.1.1/dart-core/Set-class.html">Set</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../../rohd/Logic-class.html">Logic</a></span>&gt;</span></span> <span class="parameter-name">drivenSignals</span>, </span></li>
 <li><span class="parameter" id="execute-param-guard">[<span class="type-annotation">void</span> <span class="parameter-name">guard</span>(<ol class="parameter-list"><li><span class="parameter" id="param-"><span class="type-annotation"><a href="../../rohd/Logic-class.html">Logic</a></span></span></li>
 </ol>
 )?]</span></li>
@@ -105,12 +105,7 @@ void execute(Set&lt;Logic&gt; drivenSignals, [void Function(Logic)? guard]) {
 
   if (!expression.value.isValid) {
     &#47;&#47; if expression has X or Z, then propogate X&#39;s!
-    for (final receiver in receivers) {
-      receiverOutput(receiver).put(LogicValue.x);
-      if (!drivenSignals.contains(receiver) || receiver.value.isValid) {
-        drivenSignals.add(receiver);
-      }
-    }
+    _driveX(drivenSignals);
     return;
   }
 
@@ -123,9 +118,8 @@ void execute(Set&lt;Logic&gt; drivenSignals, [void Function(Logic)? guard]) {
         conditional.execute(drivenSignals, guard);
       }
       if (foundMatch != null &amp;&amp; conditionalType == ConditionalType.unique) {
-        throw Exception(&#39;Unique case statement had multiple matching cases.&#39;
-            &#39; Original: &quot;$foundMatch&quot;.&#39;
-            &#39; Duplicate: &quot;$item&quot;.&#39;);
+        _driveX(drivenSignals);
+        return;
       }
 
       foundMatch = item;
@@ -144,8 +138,8 @@ void execute(Set&lt;Logic&gt; drivenSignals, [void Function(Logic)? guard]) {
   } else if (foundMatch == null &amp;&amp;
       (conditionalType == ConditionalType.unique ||
           conditionalType == ConditionalType.priority)) {
-    throw Exception(&#39;$conditionalType case statement had no matching case,&#39;
-        &#39; and type was $conditionalType.&#39;);
+    _driveX(drivenSignals);
+    return;
   }
 }</code></pre>
 </section>
