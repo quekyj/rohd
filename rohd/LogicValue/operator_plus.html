@@ -73,15 +73,15 @@
     
 <section class="desc markdown">
   <p>Addition operation.</p>
-<p>WARNING: Signed math is not fully tested.</p>
 </section>
 
 
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">&#47;&#47; ignore: avoid_dynamic_calls
-LogicValue operator +(dynamic other) =&gt; _doMath(other, (a, b) =&gt; a + b);</code></pre>
+  <pre class="language-dart"><code class="language-dart">LogicValue operator +(dynamic other) =&gt;
+    &#47;&#47; ignore: avoid_dynamic_calls
+    _doMath(other, (a, b) =&gt; a + b);</code></pre>
 </section>
 
 
@@ -114,7 +114,7 @@ LogicValue operator +(dynamic other) =&gt; _doMath(other, (a, b) =&gt; a + b);</
 <footer>
   <span class="no-break">
     rohd
-      0.4.2
+      0.5.0
   </span>
 
   

@@ -64,8 +64,8 @@
       
 
 <span class="returntype"><a href="../../rohd/LogicValue-class.html">LogicValue</a></span>
-<span class="name ">getRange</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="getRange-param-startIndex"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.1.2/dart-core/int-class.html">int</a></span> <span class="parameter-name">startIndex</span>, </span></li>
-<li><span class="parameter" id="getRange-param-endIndex">[<span class="type-annotation"><a href="https://api.dart.dev/stable/3.1.2/dart-core/int-class.html">int</a>?</span> <span class="parameter-name">endIndex</span>]</span></li>
+<span class="name ">getRange</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="getRange-param-startIndex"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.1.4/dart-core/int-class.html">int</a></span> <span class="parameter-name">startIndex</span>, </span></li>
+<li><span class="parameter" id="getRange-param-endIndex">[<span class="type-annotation"><a href="https://api.dart.dev/stable/3.1.4/dart-core/int-class.html">int</a>?</span> <span class="parameter-name">endIndex</span>]</span></li>
 </ol>)
 
       
@@ -109,6 +109,11 @@ LogicValue.ofString('0101').getRange(0, 7);
   final modifiedEndIndex =
       IndexUtilities.wrapIndex(endIndex, width, allowWidth: true);
 
+  &#47;&#47; if we&#39;re getting the whole thing, just return itself immediately
+  if (modifiedStartIndex == 0 &amp;&amp; modifiedEndIndex == width) {
+    return this;
+  }
+
   IndexUtilities.validateRange(modifiedStartIndex, modifiedEndIndex);
 
   return _getRange(modifiedStartIndex, modifiedEndIndex);
@@ -145,7 +150,7 @@ LogicValue.ofString('0101').getRange(0, 7);
 <footer>
   <span class="no-break">
     rohd
-      0.4.2
+      0.5.0
   </span>
 
   
