@@ -64,8 +64,8 @@
       
 
 <span class="returntype"><a href="../../rohd/LogicValue-class.html">LogicValue</a></span>
-<span class="name ">ofBigInt</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="ofBigInt-param-value"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.1.4/dart-core/BigInt-class.html">BigInt</a></span> <span class="parameter-name">value</span>, </span></li>
-<li><span class="parameter" id="ofBigInt-param-width"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.1.4/dart-core/int-class.html">int</a></span> <span class="parameter-name">width</span></span></li>
+<span class="name ">ofBigInt</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="ofBigInt-param-value"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.2.3/dart-core/BigInt-class.html">BigInt</a></span> <span class="parameter-name">value</span>, </span></li>
+<li><span class="parameter" id="ofBigInt-param-width"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.2.3/dart-core/int-class.html">int</a></span> <span class="parameter-name">width</span></span></li>
 </ol>)
 
       
@@ -82,7 +82,7 @@ number of bits.</p>
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">static LogicValue ofBigInt(BigInt value, int width) =&gt; width &gt; _INT_BITS
+  <pre class="language-dart"><code class="language-dart">static LogicValue ofBigInt(BigInt value, int width) =&gt; width &gt; INT_BITS
     ? _bigLogicValueOrFilled(value, BigInt.zero, width)
     : _smallLogicValueOrFilled(value.toIntUnsigned(width), 0, width);</code></pre>
 </section>
@@ -107,6 +107,7 @@ number of bits.</p>
 
 
     <h5>LogicValue class</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
@@ -117,7 +118,7 @@ number of bits.</p>
 <footer>
   <span class="no-break">
     rohd
-      0.5.0
+      0.5.1
   </span>
 
   
