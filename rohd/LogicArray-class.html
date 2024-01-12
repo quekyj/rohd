@@ -150,7 +150,7 @@ a <a href="../rohd/LogicValue-class.html">LogicValue</a>.
 <dd class="inherited">
   A <a href="https://api.dart.dev/stable/3.2.4/dart-async/Stream-class.html">Stream</a> of <code>LogicValueChanged</code> events which triggers at most once
 per <a href="../rohd/Simulator-class.html">Simulator</a> tick, iff the value of the <a href="../rohd/Logic-class.html">Logic</a> has changed.
-  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+  <div class="features"><span class="feature">late</span><span class="feature">final</span><span class="feature">inherited</span></div>
 
 </dd>
 
@@ -207,7 +207,7 @@ significant outermost level.
 <dd class="inherited">
   A stream of <code>LogicValueChanged</code> events for every time the signal
 transitions at any time during a <a href="../rohd/Simulator-class.html">Simulator</a> tick.
-  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+  <div class="features"><span class="feature">late</span><span class="feature">final</span><span class="feature">inherited</span></div>
 
 </dd>
 
@@ -480,7 +480,7 @@ one exists.  Otherwise, this is the same as <a href="../rohd/LogicStructure/name
 </dd>
 
         <dt id="valueBigInt" class="property inherited">
-  <span class="name"><a href="../rohd/LogicStructure/valueBigInt.html">valueBigInt</a></span>
+  <span class="name"><a class="deprecated" href="../rohd/LogicStructure/valueBigInt.html">valueBigInt</a></span>
   <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.2.4/dart-core/BigInt-class.html">BigInt</a></span> 
 
 </dt>
@@ -491,7 +491,7 @@ one exists.  Otherwise, this is the same as <a href="../rohd/LogicStructure/name
 </dd>
 
         <dt id="valueInt" class="property inherited">
-  <span class="name"><a href="../rohd/LogicStructure/valueInt.html">valueInt</a></span>
+  <span class="name"><a class="deprecated" href="../rohd/LogicStructure/valueInt.html">valueInt</a></span>
   <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.2.4/dart-core/int-class.html">int</a></span> 
 
 </dt>
@@ -521,6 +521,20 @@ one exists.  Otherwise, this is the same as <a href="../rohd/LogicStructure/name
       id="instance-methods">
     <h2>Methods</h2>
     <dl class="callables">
+        <dt id="abs" class="callable inherited">
+  <span class="name"><a href="../rohd/LogicStructure/abs.html">abs</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="../rohd/Logic-class.html">Logic</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Calculates the absolute value of a signal, assuming that the
+number is a two's complement.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
         <dt id="and" class="callable inherited">
   <span class="name"><a href="../rohd/LogicStructure/and.html">and</a></span><span class="signature">(<wbr>)
     <span class="returntype parameter">&#8594; <a href="../rohd/Logic-class.html">Logic</a></span>
@@ -863,7 +877,7 @@ named <code>busList</code>.
 
 </dt>
 <dd class="inherited">
-  Returns a new <a href="../rohd/Logic-class.html">Logic</a> with width <code>newWidth</code> where new bits added are sign
+  Returns a new <a href="../rohd/Logic-class.html">Logic</a> width width <code>newWidth</code> where new bits added are sign
 bits as the most significant bits.  The sign is determined using two's
 complement, so it takes the most significant bit of the original signal
 and extends with that.
@@ -1218,7 +1232,7 @@ as the most significant bits.
 <footer>
   <span class="no-break">
     rohd
-      0.5.1
+      0.5.2
   </span>
 
   
