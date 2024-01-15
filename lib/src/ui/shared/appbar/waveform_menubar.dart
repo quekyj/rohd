@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class WaveformAppbar extends StatelessWidget {
-  const WaveformAppbar({
+class WaveformMenubar extends StatelessWidget {
+  const WaveformMenubar({
     super.key,
   });
 
