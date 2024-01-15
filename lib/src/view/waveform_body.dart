@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class WaveformBody extends StatefulWidget {
   const WaveformBody({super.key});
@@ -10,32 +12,50 @@ class WaveformBody extends StatefulWidget {
 class _WaveformBodyState extends State<WaveformBody> {
   @override
   Widget build(BuildContext context) {
+    final bodyHeight = MediaQuery.of(context).size.height - 60;
+
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Column(
-          children: [
-            Expanded(
-              child: Container(
-                color: Colors.green,
-                child: Text('ROHD Modules'),
-              ),
+        Expanded(
+          flex: 1,
+          child: Container(
+            height: bodyHeight,
+            color: Colors.deepOrangeAccent,
+            child: Column(
+              children: [
+                Expanded(
+                  child: Container(
+                    width: double.infinity,
+                    color: Colors.green,
+                    child: Center(child: Text('D')),
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    width: double.infinity,
+                    color: Color.fromARGB(255, 172, 75, 96),
+                    child: Center(child: Text('E')),
+                  ),
+                ),
+              ],
             ),
-            Expanded(
-              child: Container(
-                color: Colors.red.shade300,
-                child: Text('ROHD Signals'),
-              ),
-            ),
-          ],
+          ),
         ),
-        Container(
-          color: Colors.amber,
-          child: Text('Selected Signals'),
+        Expanded(
+          flex: 1,
+          child: Container(
+            height: bodyHeight,
+            color: Colors.grey,
+            child: Center(child: Text('B')),
+          ),
         ),
-        Container(
-          color: Colors.blueAccent,
-          child: Text('Show Waveform here! Provide interaction!'),
+        Expanded(
+          flex: 3,
+          child: Container(
+            height: bodyHeight,
+            color: Colors.greenAccent,
+            child: Center(child: Text('C')),
+          ),
         ),
       ],
     );
