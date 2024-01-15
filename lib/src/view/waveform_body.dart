@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -12,7 +11,7 @@ class WaveformBody extends StatefulWidget {
 class _WaveformBodyState extends State<WaveformBody> {
   @override
   Widget build(BuildContext context) {
-    final bodyHeight = MediaQuery.of(context).size.height - 60;
+    final bodyHeight = MediaQuery.of(context).size.height - 80;
 
     return Row(
       children: [
