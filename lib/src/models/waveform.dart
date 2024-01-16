@@ -1,27 +1,37 @@
 class Data {
-  late int time;
-  late int value;
+  int time;
+  int value;
+
+  Data({required this.time, required this.value});
 }
 
 class Signal {
-  late String name;
-  late String type;
-  late List<Data> data;
+  String name;
+  String type;
+  List<Data> data;
+
+  Signal({required this.name, required this.type, required this.data});
 }
 
 class Module {
-  late String name;
-  late List<Module> subModules;
-  late List<Signal> signals;
+  String name;
+  List<Module> subModules;
+  List<Signal> signals;
+
+  Module({required this.name, required this.subModules, required this.signals});
 }
 
 class MetaData {
-  late String source;
-  late String timescale;
-  late String date;
+  String source;
+  String timescale;
+  String date;
+
+  MetaData({required this.source, required this.timescale, required this.date});
 }
 
 class WaveformNode {
-  late MetaData metadata;
-  late List<Module> modules;
+  MetaData metadata;
+  List<Module> modules;
+
+  WaveformNode({required this.metadata, required this.modules});
 }
