@@ -1,8 +1,8 @@
 import 'package:devtools_app_shared/ui.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:rohd_wave_viewer/src/constants/colors.dart';
 import 'package:rohd_wave_viewer/src/view/module_signal_list_panel.dart';
+import 'package:rohd_wave_viewer/src/view/selected_signals_panel.dart';
 
 class WaveformBody extends StatefulWidget {
   const WaveformBody({super.key});
@@ -29,8 +29,7 @@ class _WaveformBodyState extends State<WaveformBody> {
           ),
           Container(
             height: bodyHeight,
-            color: Colors.grey,
-            child: Center(child: Text('User selected signals stay here')),
+            child: SelectedSignalsPanel(),
           ),
           Container(
             height: bodyHeight,

@@ -1,6 +1,6 @@
 import 'package:devtools_app_shared/ui.dart';
 import 'package:flutter/material.dart';
-import 'package:rohd_wave_viewer/src/ui/tree_card.dart';
+import 'package:rohd_wave_viewer/src/ui/module_signal_card.dart';
 
 class ModuleSignalsListPanel extends StatelessWidget {
   const ModuleSignalsListPanel({
@@ -13,7 +13,7 @@ class ModuleSignalsListPanel extends StatelessWidget {
       axis: Axis.vertical,
       initialFractions: const [0.5, 0.5],
       children: [
-        TreeCard(
+        ModuleSignalCard(
           cardTitle: 'Modules',
           cardBody: const Center(
             child: Text('Module Tree'),
@@ -23,7 +23,7 @@ class ModuleSignalsListPanel extends StatelessWidget {
             IconButton(onPressed: () {}, icon: const Icon(Icons.refresh)),
           ],
         ),
-        TreeCard(
+        ModuleSignalCard(
           cardTitle: 'Signals',
           cardBody: const Center(
             child: Text('Signals List'),
