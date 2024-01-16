@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   widgetbook_annotation: ^3.1.0
   widgetbook: ^3.7.1
+  flutter_fancy_tree_view: ^1.4.1
 
 dev_dependencies:
   flutter_test:

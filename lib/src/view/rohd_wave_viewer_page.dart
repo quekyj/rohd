@@ -11,11 +11,12 @@ class RohdWaveViewer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: backgroundColor,
+        color: primaryColor,
         child: const Column(
           children: [
             WaveformMenubar(),
             WaveformBody(),
+            // TreeModulePanel(),
           ],
         ),
       ),

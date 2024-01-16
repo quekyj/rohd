@@ -1,5 +1,8 @@
+import 'package:devtools_app_shared/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:rohd_wave_viewer/src/constants/colors.dart';
+import 'package:rohd_wave_viewer/src/view/module_signal_list_panel.dart';
 
 class WaveformBody extends StatefulWidget {
   const WaveformBody({super.key});
@@ -13,51 +16,29 @@ class _WaveformBodyState extends State<WaveformBody> {
   Widget build(BuildContext context) {
     final bodyHeight = MediaQuery.of(context).size.height - 80;
 
-    return Row(
-      children: [
-        Expanded(
-          flex: 1,
-          child: Container(
+    return Expanded(
+      child: Split(
+        axis: Axis.horizontal,
+        initialFractions: const [0.2, 0.2, 0.6],
+        minSizes: const [200, 200, 600],
+        children: [
+          Container(
             height: bodyHeight,
-            color: Colors.deepOrangeAccent,
-            child: Column(
-              children: [
-                Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    color: Colors.green,
-                    child: Center(child: Text('Available Modules')),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    color: Color.fromARGB(255, 172, 75, 96),
-                    child:
-                        Center(child: Text('Signals that reside in a module')),
-                  ),
-                ),
-              ],
-            ),
+            color: primaryColor,
+            child: const ModuleSignalsListPanel(),
           ),
-        ),
-        Expanded(
-          flex: 1,
-          child: Container(
+          Container(
             height: bodyHeight,
             color: Colors.grey,
             child: Center(child: Text('User selected signals stay here')),
           ),
-        ),
-        Expanded(
-          flex: 3,
-          child: Container(
+          Container(
             height: bodyHeight,
             color: Colors.greenAccent,
             child: Center(child: Text('Waveform UI stay here')),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

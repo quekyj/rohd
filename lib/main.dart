@@ -1,8 +1,11 @@
+import 'package:devtools_app_shared/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:rohd_wave_viewer/src/constants/colors.dart';
 import 'package:rohd_wave_viewer/src/view/rohd_wave_viewer_page.dart';
+import 'package:devtools_app_shared/utils.dart';
 
 void main() {
+  setGlobal(IdeTheme, getIdeTheme());
   runApp(const WaveformTracer());
 }
 
@@ -15,20 +18,20 @@ class WaveformTracer extends StatelessWidget {
       title: 'ROHD Waveform Viewer',
       theme: ThemeData(
         textTheme: const TextTheme(
-          headlineLarge: TextStyle(color: primaryColor),
-          headlineMedium: TextStyle(color: primaryColor),
-          headlineSmall: TextStyle(color: primaryColor),
-          displayLarge: TextStyle(color: primaryColor),
-          displayMedium: TextStyle(color: primaryColor),
-          displaySmall: TextStyle(color: primaryColor),
-          titleLarge: TextStyle(color: primaryColor),
-          titleMedium: TextStyle(color: primaryColor),
-          titleSmall: TextStyle(color: primaryColor),
-          bodyLarge: TextStyle(color: primaryColor),
-          bodyMedium: TextStyle(color: primaryColor),
-          bodySmall: TextStyle(color: primaryColor),
+          headlineLarge: TextStyle(color: textColor),
+          headlineMedium: TextStyle(color: textColor),
+          headlineSmall: TextStyle(color: textColor),
+          displayLarge: TextStyle(color: textColor),
+          displayMedium: TextStyle(color: textColor),
+          displaySmall: TextStyle(color: textColor),
+          titleLarge: TextStyle(color: textColor),
+          titleMedium: TextStyle(color: textColor),
+          titleSmall: TextStyle(color: textColor),
+          bodyLarge: TextStyle(color: textColor),
+          bodyMedium: TextStyle(color: textColor),
+          bodySmall: TextStyle(color: textColor),
         ),
-        colorScheme: ColorScheme.fromSeed(seedColor: backgroundColor),
+        colorScheme: ColorScheme.fromSeed(seedColor: textColor),
         menuTheme: const MenuThemeData(
           style: MenuStyle(
             padding: MaterialStatePropertyAll(
