@@ -1,5 +1,6 @@
 import 'package:devtools_app_shared/ui.dart';
 import 'package:flutter/material.dart';
+import 'package:rohd_wave_viewer/src/models/waveform_mock.dart';
 import 'package:rohd_wave_viewer/src/ui/module_signal_card.dart';
 
 class ModuleSignalsListPanel extends StatelessWidget {
@@ -9,6 +10,9 @@ class ModuleSignalsListPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final moduleMock = generateWaveFormNode();
+    print(moduleMock.modules.first.signals.first.name);
+
     return Split(
       axis: Axis.vertical,
       initialFractions: const [0.5, 0.5],
