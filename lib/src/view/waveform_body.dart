@@ -26,14 +26,15 @@ class _WaveformBodyState extends State<WaveformBody> {
                   child: Container(
                     width: double.infinity,
                     color: Colors.green,
-                    child: Center(child: Text('D')),
+                    child: Center(child: Text('Available Modules')),
                   ),
                 ),
                 Expanded(
                   child: Container(
                     width: double.infinity,
                     color: Color.fromARGB(255, 172, 75, 96),
-                    child: Center(child: Text('E')),
+                    child:
+                        Center(child: Text('Signals that reside in a module')),
                   ),
                 ),
               ],
@@ -45,7 +46,7 @@ class _WaveformBodyState extends State<WaveformBody> {
           child: Container(
             height: bodyHeight,
             color: Colors.grey,
-            child: Center(child: Text('B')),
+            child: Center(child: Text('User selected signals stay here')),
           ),
         ),
         Expanded(
@@ -53,7 +54,7 @@ class _WaveformBodyState extends State<WaveformBody> {
           child: Container(
             height: bodyHeight,
             color: Colors.greenAccent,
-            child: Center(child: Text('C')),
+            child: Center(child: Text('Waveform UI stay here')),
           ),
         ),
       ],
