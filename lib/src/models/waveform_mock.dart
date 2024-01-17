@@ -13,10 +13,10 @@ WaveformModel generateWaveFormNode() {
     },
     "modules": [
       {
-        "name": "Module1",
+        "name": "Counter",
         "subModules": [
           {
-            "name": "SubModule1",
+            "name": "counter_sub_module",
             "subModules": [],
             "signals": [
               {

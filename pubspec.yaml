@@ -37,7 +37,10 @@ dependencies:
   widgetbook_annotation: ^3.1.0
   widgetbook: ^3.7.1
   flutter_fancy_tree_view: ^1.4.1
-
+  riverpod: ^2.4.9
+  riverpod_annotation: ^2.3.3
+  flutter_riverpod: ^2.4.9
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -50,6 +53,8 @@ dev_dependencies:
   flutter_lints: ^3.0.0
   widgetbook_generator: ^3.7.0
   build_runner: ^2.4.8
+  riverpod_generator: ^2.3.9
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

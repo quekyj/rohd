@@ -1,12 +1,17 @@
 import 'package:devtools_app_shared/ui.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rohd_wave_viewer/src/constants/colors.dart';
 import 'package:rohd_wave_viewer/src/view/rohd_wave_viewer_page.dart';
 import 'package:devtools_app_shared/utils.dart';
 
 void main() {
   setGlobal(IdeTheme, getIdeTheme());
-  runApp(const WaveformTracer());
+  runApp(
+    const ProviderScope(
+      child: WaveformTracer(),
+    ),
+  );
 }
 
 class WaveformTracer extends StatelessWidget {
