@@ -24,12 +24,12 @@ WaveformModel generateWaveFormNode() {
                 "type": "SubType1",
                 "data": [
                   {
-                    "time": 3,
-                    "value": 300
+                    "time": 10,
+                    "value": 1
                   },
                   {
-                    "time": 4,
-                    "value": 400
+                    "time": 20,
+                    "value": 0
                   }
                 ]
               }
@@ -42,12 +42,12 @@ WaveformModel generateWaveFormNode() {
             "type": "Type1",
             "data": [
               {
-                "time": 1,
-                "value": 100
+                "time": 10,
+                "value": 0
               },
               {
-                "time": 2,
-                "value": 200
+                "time": 20,
+                "value": 1
               }
             ]
           },
@@ -56,12 +56,12 @@ WaveformModel generateWaveFormNode() {
             "type": "Type2",
             "data": [
               {
-                "time": 5,
-                "value": 500
+                "time": 10,
+                "value": 1
               },
               {
-                "time": 6,
-                "value": 600
+                "time": 20,
+                "value": 1
               }
             ]
           }

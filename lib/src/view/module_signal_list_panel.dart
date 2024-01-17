@@ -115,8 +115,6 @@ class _ModuleSignalsListPanelState
                     ref
                         .read(selectedSignalsListProvider.notifier)
                         .addSignals(signal);
-
-                    print(ref.watch(selectedSignalsListProvider));
                   },
                   child: Text(signal.name),
                 ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:rohd_wave_viewer/src/constants/colors.dart';
 import 'package:rohd_wave_viewer/src/view/module_signal_list_panel.dart';
 import 'package:rohd_wave_viewer/src/view/selected_signals_panel.dart';
+import 'package:rohd_wave_viewer/src/view/waveform_panel.dart';
 
 class WaveformBody extends StatefulWidget {
   const WaveformBody({super.key});
@@ -33,8 +34,7 @@ class _WaveformBodyState extends State<WaveformBody> {
           ),
           Container(
             height: bodyHeight,
-            color: Colors.greenAccent,
-            child: Center(child: Text('Waveform UI stay here')),
+            child: WaveformPanel(),
           ),
         ],
       ),

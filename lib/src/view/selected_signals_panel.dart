@@ -28,8 +28,6 @@ class _SelectedSignalsPanelState extends ConsumerState<SelectedSignalsPanel> {
   }
 
   List<Widget> _populateSelectedSignals() {
-    print('detected change in list');
-
     if (ref.watch(selectedSignalsListProvider).isNotEmpty) {
       return ref
           .watch(selectedSignalsListProvider)
