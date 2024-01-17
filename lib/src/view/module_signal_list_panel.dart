@@ -7,6 +7,7 @@ import 'package:rohd_wave_viewer/src/providers/selected_module_provider.dart';
 import 'package:rohd_wave_viewer/src/providers/selected_signals_list_provider.dart';
 import 'package:rohd_wave_viewer/src/ui/module_signal_card.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rohd_wave_viewer/src/ui/signal_tab_container.dart';
 
 class ModuleSignalsListPanel extends ConsumerStatefulWidget {
   const ModuleSignalsListPanel({
@@ -116,7 +117,9 @@ class _ModuleSignalsListPanelState
                         .read(selectedSignalsListProvider.notifier)
                         .addSignals(signal);
                   },
-                  child: Text(signal.name),
+                  child: SignalTabContainer(
+                    containerBody: Text(signal.name),
+                  ),
                 ),
               ),
             ),
