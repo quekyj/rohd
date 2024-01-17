@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rohd_wave_viewer/src/providers/selected_signals_list_provider.dart';
 import 'package:rohd_wave_viewer/src/services/waveform_signals.dart';
 import 'package:rohd_wave_viewer/src/ui/module_signal_card.dart';
+import 'package:rohd_wave_viewer/src/ui/signal_tab_container.dart';
 import 'package:rohd_wave_viewer/src/ui/waveform_painter.dart';
 
 class WaveformPanel extends ConsumerStatefulWidget {
@@ -18,13 +19,7 @@ class _WaveformPanelState extends ConsumerState<WaveformPanel> {
     final signals = ref.watch(selectedSignalsListProvider);
     final waveformSignals = signals
         .map(
-          (signal) => Padding(
-            padding: const EdgeInsets.only(
-              left: 10,
-              top: 5,
-            ),
-            child: drawWaveform(WaveformSignals.getSignalData(signal)),
-          ),
+          (signal) => drawWaveform(WaveformSignals.getSignalData(signal)),
         )
         .toList();
 
@@ -37,12 +32,10 @@ class _WaveformPanelState extends ConsumerState<WaveformPanel> {
     );
   }
 
-  Container drawWaveform(List<int> data) {
-    return Container(
-      width: double.infinity,
-      height: 10,
-      child: CustomPaint(
-        size: Size(10, 10), // Arbitrary size
+  SignalTabContainer drawWaveform(List<int> data) {
+    return SignalTabContainer(
+      containerBody: CustomPaint(
+        size: const Size(20, 20), // Arbitrary size
         painter: WaveformPainter(data),
       ),
     );

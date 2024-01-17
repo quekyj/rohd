@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:rohd_wave_viewer/src/providers/selected_signals_list_provider.dart';
 import 'package:rohd_wave_viewer/src/ui/module_signal_card.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rohd_wave_viewer/src/ui/signal_tab_container.dart';
 
 class SelectedSignalsPanel extends ConsumerStatefulWidget {
   const SelectedSignalsPanel({
@@ -20,7 +21,7 @@ class _SelectedSignalsPanelState extends ConsumerState<SelectedSignalsPanel> {
     return ModuleSignalCard(
       cardTitle: 'Selected Signals',
       cardBody: Expanded(
-        child: ListView(
+        child: Column(
           children: _populateSelectedSignals(),
         ),
       ),
@@ -32,9 +33,11 @@ class _SelectedSignalsPanelState extends ConsumerState<SelectedSignalsPanel> {
       return ref
           .watch(selectedSignalsListProvider)
           .map(
-            (signal) => Padding(
-              padding: const EdgeInsets.only(top: 5, left: 10),
-              child: Text(signal.name),
+            (signal) => SignalTabContainer(
+              containerBody: Text(
+                signal.name,
+                textAlign: TextAlign.right,
+              ),
             ),
           )
           .toList();
