@@ -2,6 +2,11 @@ import 'dart:convert';
 
 import 'package:rohd_wave_viewer/src/models/waveform_model.dart';
 
+// TODO: If number in hex, probably want to change it to decimal (Radix options)
+// TODO: Ability to save a list of user
+// TODO: Missing value column
+// TODO: support 2 cursor, primary and secondary to measure points in between
+// TODO: 0xFFF value in waveform
 WaveformModel generateWaveFormNode() {
   // This is the JSON string that you want to parse.
   String jsonString = '''
