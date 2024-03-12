@@ -29,7 +29,7 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">rohd</a></li>
-    <li><a href="../../rohd/rohd-library.html">rohd</a></li>
+    <li><a href="../../rohd/rohd-library.html">rohd.dart</a></li>
     <li><a href="../../rohd/Simulator-class.html">Simulator</a></li>
     <li class="self-crumb">tick static method</li>
   </ol>
@@ -63,7 +63,7 @@
     <section class="multi-line-signature">
       
 
-<span class="returntype"><a href="https://api.dart.dev/stable/3.2.6/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
+<span class="returntype"><a href="https://api.dart.dev/stable/3.3.1/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
 <span class="name ">tick</span>(<wbr>)
 
       
@@ -91,18 +91,21 @@ timestamp, and passes through all events and phases on the way.</p>
   }
 
   final nextTimeStamp = _pendingTimestamps.firstKey();
+
   if (nextTimeStamp == null) {
     return;
   }
 
   _currentTimestamp = nextTimeStamp;
 
+  final pendingList = _pendingTimestamps[nextTimeStamp]!;
+  _pendingTimestamps.remove(_currentTimestamp);
+
   await tickExecute(() async {
-    for (final func in _pendingTimestamps[nextTimeStamp]!) {
+    for (final func in pendingList) {
       await func();
     }
   });
-  _pendingTimestamps.remove(_currentTimestamp);
 }</code></pre>
 </section>
 
